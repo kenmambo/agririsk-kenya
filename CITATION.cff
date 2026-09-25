@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, methodology, or benchmark panel, please cite it as below."
+authors:
+  - family-names: "Mambo"
+    given-names: "Kenneth"
+    orcid: ""
+title: "AgriRisk Kenya: A Data-Driven Early Warning Prototype for Climate-Resilient Agriculture and Food Security in Kenya's Arid and Semi-Arid Lands"
+version: 1.0.0
+date-released: 2026-09-25
+url: "https://github.com/kenmambo/agririsk-kenya"
+repository-code: "https://github.com/kenmambo/agririsk-kenya"
+license: MIT
+keywords:
+  - "food security"
+  - "early warning systems"
+  - "anticipatory action"
+  - "climate resilience"
+  - "remote sensing"
+  - "geospatial machine learning"
+  - "CHIRPS"
+  - "MODIS"
+  - "Kenya ASALs"
+  - "disaster risk financing"
+abstract: >-
+  AgriRisk Kenya is an open-source machine learning early-warning prototype
+  designed to forecast county-level acute food-insecurity crisis risk (IPC Phase 3+)
+  at 1-, 2-, and 3-month lead times across Kenya's Arid and Semi-Arid Lands.
+  Integrating CHIRPS precipitation pentads, MODIS 250m NDVI composites, WFP staple
+  cereal prices, and first-order Queen contiguity spatial lags, the system provides
+  calibrated decision-support metrics for Forecast-based Financing and anticipatory
+  humanitarian action.

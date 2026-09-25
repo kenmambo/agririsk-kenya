@@ -1,0 +1,17 @@
+sequenceDiagram
+    autonumber
+    actor Practitioner as Food Security Analyst / Agronomist
+    participant UI as Streamlit / FastAPI Interface
+    participant Runner as Inference & Forecast Engine
+    participant Registry as Model & Data Registry
+    participant Spatial as Geospatial & Spatial Lag Engine
+
+    Practitioner->>UI: Selects County (e.g., Turkana) & Lead Time (t+1, t+2, t+3)
+    UI->>Runner: Request calibrated risk probability & confidence interval
+    Runner->>Registry: Load feature snapshot & calibrated ensemble weights
+    Registry->>Spatial: Fetch Queen-adjacency neighbor risk signals
+    Spatial-->>Runner: Return spatially weighted neighbor crisis indicators
+    Runner->>Runner: Compute prediction, Platt-calibrated probability, & bootstrap bounds
+    Runner-->>UI: Output risk score, 95% CI, and domain attribution weights
+    UI->>UI: Render interactive choropleth, timeline trend, & reliability gauge
+    UI-->>Practitioner: Display contextual decision-support alert with explicit non-operational disclaimer

@@ -1,4 +1,4 @@
-.PHONY: help setup ingest validate features train research dashboard test clean
+.PHONY: help setup ingest validate features train research dashboard demo test clean
 
 help:
 	@echo "AgriRisk Kenya - Command Line Interface"
@@ -10,6 +10,7 @@ help:
 	@echo "train      : Train baseline and 1-3 month risk forecast models"
 	@echo "research   : Run Milestone 6 benchmarks, ablations, bootstrap CI, and report"
 	@echo "dashboard  : Launch interactive Streamlit decision-support dashboard"
+	@echo "demo       : Run interactive terminal early-warning demo"
 	@echo "test       : Run unit and integration tests with pytest"
 	@echo "clean      : Remove temporary caches, build artifacts, and pytest cache"
 
@@ -37,6 +38,9 @@ pipeline:
 
 dashboard:
 	uv run streamlit run app/Home.py --server.port 8501
+
+demo:
+	uv run python scripts/demo_mode.py
 
 test:
 	uv run pytest tests/ -v

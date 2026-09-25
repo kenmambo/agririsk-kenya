@@ -1,0 +1,41 @@
+flowchart TD
+    subgraph RawSources ["Raw Multi-Source Data Ingestion"]
+        S1["CHIRPS Pentad Rainfall<br/>(UCSB / Climate Data)"]
+        S2["MODIS 250m NDVI / 8-Day<br/>(NASA Earthdata)"]
+        S3["WFP / VAM Market Prices<br/>(Staple Cereals / Maize)"]
+        S4["IPC / NDMA Bulletins<br/>(Acute Food Insecurity Phases)"]
+        S5["Kenya Admin-1 GeoJSON<br/>(47 Canonical Boundaries)"]
+    end
+
+    subgraph IngestionLineage ["Standardization & Lineage Layer"]
+        I1["Source Ingestion Orchestrator<br/>(config/data_sources.yaml)"]
+        I2["Raw Immutable Storage<br/>(data/raw/ + data/manifest.json)"]
+        I3["Canonical County Standardizer<br/>(CountyRegistry, Alias Resolver)"]
+        I4["Data Quality & Schema Drift<br/>(Range Checks, Drift Detector)"]
+    end
+
+    subgraph FeatureEngineering ["Feature Store & Spatial Processing"]
+        F1["Temporal Lag Engine<br/>(1M, 2M, 3M, 6M, 12M Lags)"]
+        F2["Rolling Statistics<br/>(3M & 6M Means, Anomalies, Volatility)"]
+        F3["Spatial Adjacency Engine<br/>(Queen Contiguity & Distance-Decay)"]
+        F4["Integrated Feature Panel<br/>(35 Columns, 780 County-Months)"]
+    end
+
+    subgraph ModelingEngine ["Predictive Modeling & Calibration"]
+        M1["Expanding-Origin Backtester<br/>(Zero Look-Ahead Leakage)"]
+        M2["Simple Heuristic Baselines<br/>(Persistence, HistFreq, Seasonal)"]
+        M3["Machine Learning Classifiers<br/>(Random Forest, HistGradientBoosting)"]
+        M4["Platt Probability Calibration<br/>(Brier Score Optimization)"]
+        M5["Uncertainty & Attribution<br/>(Block Bootstrap CIs, SHAP / Importance)"]
+    end
+
+    subgraph DeliveryInterfaces ["Interactive Decision Support"]
+        D1["Streamlit Multi-Page App<br/>(Overview, Spatial, Timeline, Evaluation)"]
+        D2["FastAPI Microservice<br/>(REST Endpoints: /counties, /risk)"]
+        D3["Research Experiment Registry<br/>(CSV Tracking, Model Cards, CIs)"]
+    end
+
+    RawSources --> IngestionLineage
+    IngestionLineage --> FeatureEngineering
+    FeatureEngineering --> ModelingEngine
+    ModelingEngine --> DeliveryInterfaces
