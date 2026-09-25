@@ -1,0 +1,131 @@
+{
+  "horizon_months": 1,
+  "best_model": "hist_gradient_boosting",
+  "optimal_threshold": 0.1,
+  "threshold_selection_rationale": "Max F1 subject to min recall >= 0.80 on validation partition",
+  "validation_2023_metrics": [
+    {
+      "threshold": 0.2,
+      "precision": 0.7667,
+      "recall": 1.0,
+      "f1_score": 0.8679,
+      "roc_auc": 0.941,
+      "pr_auc": 0.9755,
+      "brier_score": 0.0789,
+      "false_negative_rate": 0.0,
+      "true_positives": 46,
+      "false_negatives": 0,
+      "true_negatives": 0,
+      "false_positives": 14,
+      "confusion_matrix": [
+        [
+          0,
+          14
+        ],
+        [
+          0,
+          46
+        ]
+      ],
+      "model": "logistic_regression",
+      "horizon": 1,
+      "split": "val_2023"
+    },
+    {
+      "threshold": 0.45,
+      "precision": 0.7667,
+      "recall": 1.0,
+      "f1_score": 0.8679,
+      "roc_auc": 0.9301,
+      "pr_auc": 0.9747,
+      "brier_score": 0.1186,
+      "false_negative_rate": 0.0,
+      "true_positives": 46,
+      "false_negatives": 0,
+      "true_negatives": 0,
+      "false_positives": 14,
+      "confusion_matrix": [
+        [
+          0,
+          14
+        ],
+        [
+          0,
+          46
+        ]
+      ],
+      "model": "random_forest",
+      "horizon": 1,
+      "split": "val_2023"
+    },
+    {
+      "threshold": 0.1,
+      "precision": 0.7667,
+      "recall": 1.0,
+      "f1_score": 0.8679,
+      "roc_auc": 0.9224,
+      "pr_auc": 0.9406,
+      "brier_score": 0.0774,
+      "false_negative_rate": 0.0,
+      "true_positives": 46,
+      "false_negatives": 0,
+      "true_negatives": 0,
+      "false_positives": 14,
+      "confusion_matrix": [
+        [
+          0,
+          14
+        ],
+        [
+          0,
+          46
+        ]
+      ],
+      "model": "hist_gradient_boosting",
+      "horizon": 1,
+      "split": "val_2023"
+    }
+  ],
+  "test_2024_metrics": {
+    "threshold": 0.1,
+    "precision": 0.1818,
+    "recall": 1.0,
+    "f1_score": 0.3077,
+    "roc_auc": 0.7733,
+    "pr_auc": 0.368,
+    "brier_score": 0.1707,
+    "false_negative_rate": 0.0,
+    "true_positives": 10,
+    "false_negatives": 0,
+    "true_negatives": 0,
+    "false_positives": 45,
+    "confusion_matrix": [
+      [
+        0,
+        45
+      ],
+      [
+        0,
+        10
+      ]
+    ],
+    "model": "hist_gradient_boosting",
+    "horizon": 1,
+    "split": "test_2024"
+  },
+  "calibration": {
+    "prob_true": [
+      0.1590909090909091,
+      0.25,
+      0.0,
+      0.5
+    ],
+    "prob_pred": [
+      0.27526738487330743,
+      0.4998905122542576,
+      0.7406316044780168,
+      0.8493946364690401
+    ],
+    "brier_score": 0.1707
+  }
+}

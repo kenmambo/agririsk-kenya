@@ -91,6 +91,11 @@ with col_b:
     - **Mathematical Formulations:** Rolling window calculations, z-score transformations, and anomaly baselines.
     - **Critical Distinction:** Clear boundary between official IPC classifications and AgriRisk model probabilities.
     - **Ethical Guardrails:** Prohibiting unauthorized automated resource allocation.
+
+    #### 7. [Risk Forecasting (1M, 2M, 3M)](Forecast)
+    - **Short-Horizon Early Warning:** Prospective 1-month, 2-month, and 3-month forward risk probabilities.
+    - **Rolling-Origin Calibrated Models:** Platt scaling, Brier scoring, and recall-optimized decision thresholds.
+    - **County Trajectories & Indicators:** Anticipatory signals without causal attribution claims.
     """)
 
 st.divider()

@@ -30,8 +30,8 @@ Humanitarian response and agricultural mitigation often suffer from **reaction l
 - [x] **Milestone 1:** Production repository scaffolding, YAML configuration, structured logging, SQLite database setup, County model & 47-county seeder, Pydantic schemas, FastAPI health & county catalog endpoints, Streamlit geospatial landing page, and unit test suite.
 - [x] **Milestone 2:** Multi-source data ingestion pipelines, county name standardizer, feature engineering pipeline, data validator, reproducible modeling dataset (`data/processed/model_dataset.csv`), time-aware baseline modeling (Logistic Regression & Random Forest), evaluation metrics emphasizing Recall and False Negative diagnostics, visual report figures, and comprehensive documentation (`docs/`).
 - [x] **Milestone 3:** Interactive multi-page geospatial decision-support dashboard in Streamlit (`app/Home.py` and 6 specialized pages), Kenya county choropleth risk map, longitudinal multi-indicator timelines, explainability & non-causal attribution panels, data quality & latency audit, and 63 unit tests.
-- [ ] **Milestone 4:** Live satellite API connectors (CHIRPS & Google Earth Engine), automated pipeline scheduling, and database persistence.
-- [ ] **Milestone 5:** Advanced gradient-boosted ensembles (XGBoost/LightGBM), hyperparameter tuning, and probability calibration.
+- [x] **Milestone 4:** Short-horizon food-security risk forecasting (1M, 2M, and 3M ahead), lagged climate/vegetation/market/IPC predictors, expanding-window rolling-origin backtesting, recall-prioritized threshold tuning, Platt probability calibration, multi-horizon metrics and reliability curves, early-warning dashboard (`app/pages/7_Forecast.py`), and 73 unit tests.
+- [ ] **Milestone 5:** Live satellite API connectors (CHIRPS & Google Earth Engine), automated pipeline scheduling, and database persistence.
 
 ---
 
@@ -131,6 +131,7 @@ Chronological split: **Train (2019–2022: 225 rows)** $\to$ **Validation (2023:
 - **[Data Dictionary](file:///c:/Users/kexma/code/AgriRiskKenya/docs/data_dictionary.md)**: Column specifications, data types, physical measurement units, and formulas.
 - **[Methodology Specification](file:///c:/Users/kexma/code/AgriRiskKenya/docs/methodology.md)**: Time-aware validation design, feature mathematics, and recall optimization rationale.
 - **[Limitations & Ethical Guardrails](file:///c:/Users/kexma/code/AgriRiskKenya/docs/limitations.md)**: Known sensor constraints, spatial aggregation issues, and humanitarian disclaimer.
+- **[Multi-Horizon Forecasting Methodology](file:///c:/Users/kexma/code/AgriRiskKenya/docs/forecasting.md)**: Forward target definition, rolling-origin backtesting, threshold tuning, Platt calibration, and early-warning matrix.
 
 ---
 
@@ -156,12 +157,15 @@ uv run python scripts/build_modeling_dataset.py
 # 5. Train baseline models, evaluate metrics, and export figures
 uv run python scripts/train_baseline_models.py
 
-# 6. Run the complete pytest test suite (63 unit tests)
+# 6. Train multi-horizon forecasting models, run rolling-origin backtests, and export calibration curves
+uv run python scripts/train_forecast_models.py
+
+# 7. Run the complete pytest test suite (73 unit tests)
 uv run pytest
 
-# 7. Start the FastAPI backend
+# 8. Start the FastAPI backend
 uv run uvicorn agririsk.api.app:app --host 127.0.0.1 --port 8000 --reload
 
-# 8. Launch the interactive multi-page Decision-Support Dashboard
+# 9. Launch the interactive multi-page Decision-Support Dashboard
 uv run streamlit run app/Home.py
 ```
