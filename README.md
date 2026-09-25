@@ -29,9 +29,9 @@ Humanitarian response and agricultural mitigation often suffer from **reaction l
 ### Milestone Progress
 - [x] **Milestone 1:** Production repository scaffolding, YAML configuration, structured logging, SQLite database setup, County model & 47-county seeder, Pydantic schemas, FastAPI health & county catalog endpoints, Streamlit geospatial landing page, and unit test suite.
 - [x] **Milestone 2:** Multi-source data ingestion pipelines, county name standardizer, feature engineering pipeline, data validator, reproducible modeling dataset (`data/processed/model_dataset.csv`), time-aware baseline modeling (Logistic Regression & Random Forest), evaluation metrics emphasizing Recall and False Negative diagnostics, visual report figures, and comprehensive documentation (`docs/`).
-- [ ] **Milestone 3:** Live satellite API connectors (CHIRPS & Google Earth Engine), automated pipeline scheduling, and database persistence.
-- [ ] **Milestone 4:** Advanced gradient-boosted ensembles (XGBoost/LightGBM), hyperparameter tuning, and probability calibration.
-- [ ] **Milestone 5:** Interactive Streamlit Early Warning Decision Dashboard with county risk drill-downs and climate shock simulation.
+- [x] **Milestone 3:** Interactive multi-page geospatial decision-support dashboard in Streamlit (`app/Home.py` and 6 specialized pages), Kenya county choropleth risk map, longitudinal multi-indicator timelines, explainability & non-causal attribution panels, data quality & latency audit, and 63 unit tests.
+- [ ] **Milestone 4:** Live satellite API connectors (CHIRPS & Google Earth Engine), automated pipeline scheduling, and database persistence.
+- [ ] **Milestone 5:** Advanced gradient-boosted ensembles (XGBoost/LightGBM), hyperparameter tuning, and probability calibration.
 
 ---
 
@@ -156,12 +156,12 @@ uv run python scripts/build_modeling_dataset.py
 # 5. Train baseline models, evaluate metrics, and export figures
 uv run python scripts/train_baseline_models.py
 
-# 6. Run the complete pytest test suite
+# 6. Run the complete pytest test suite (63 unit tests)
 uv run pytest
 
 # 7. Start the FastAPI backend
 uv run uvicorn agririsk.api.app:app --host 127.0.0.1 --port 8000 --reload
 
-# 8. Launch the Streamlit dashboard
-uv run streamlit run src/agririsk/ui/streamlit_app.py
+# 8. Launch the interactive multi-page Decision-Support Dashboard
+uv run streamlit run app/Home.py
 ```

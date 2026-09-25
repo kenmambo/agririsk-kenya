@@ -97,7 +97,13 @@ def main():
         }
     }
 
-    # 6. Save JSON Metrics
+    # 6. Save Model Artifact and JSON Metrics
+    import joblib
+    model_artifact_path = PROJECT_ROOT / "artifacts" / "models" / "baseline_models.joblib"
+    model_artifact_path.parent.mkdir(parents=True, exist_ok=True)
+    joblib.dump(models, model_artifact_path)
+    logger.info("Saved model artifact to: %s", model_artifact_path)
+
     metrics_file = PROJECT_ROOT / "reports" / "model_results" / "baseline_metrics.json"
     ModelReporter.save_metrics_json(metrics_summary, metrics_file)
     logger.info("Saved baseline metrics report to: %s", metrics_file)
