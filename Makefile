@@ -1,4 +1,4 @@
-.PHONY: help setup ingest validate features train dashboard test clean
+.PHONY: help setup ingest validate features train research dashboard test clean
 
 help:
 	@echo "AgriRisk Kenya - Command Line Interface"
@@ -8,6 +8,7 @@ help:
 	@echo "validate   : Validate data quality and run drift detection"
 	@echo "features   : Process raw inputs and engineer modeling feature store"
 	@echo "train      : Train baseline and 1-3 month risk forecast models"
+	@echo "research   : Run Milestone 6 benchmarks, ablations, bootstrap CI, and report"
 	@echo "dashboard  : Launch interactive Streamlit decision-support dashboard"
 	@echo "test       : Run unit and integration tests with pytest"
 	@echo "clean      : Remove temporary caches, build artifacts, and pytest cache"
@@ -27,6 +28,9 @@ features:
 
 train:
 	uv run python -m agririsk.pipeline run --step train
+
+research:
+	uv run python scripts/run_milestone6_experiments.py
 
 pipeline:
 	uv run python -m agririsk.pipeline run

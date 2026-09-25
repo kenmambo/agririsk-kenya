@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "manifest_version": "1.0",
-  "last_updated": "2026-09-25T14:29:14.268007+00:00",
+  "last_updated": "2026-09-25T14:48:03.665611+00:00",
   "assets": {
     "rainfall_chirps": [
       {
@@ -154,6 +154,30 @@
         "source_provider": "UCSB Climate Hazards Center / USGS FEWS NET",
         "source_url": "https://data.chc.ucsb.edu/products/CHIRPS-2.0/africa_monthly/tifs/",
         "retrieval_timestamp": "2026-09-25T14:29:14.097362+00:00",
+        "file_path": "data/raw/climate/kenya_asal_monthly_rainfall.csv",
+        "file_size_bytes": 9639,
+        "sha256_checksum": "bc0ee869c9bd00aeb5b79034754c5ca4cc87963e1722e65a30bdc617adcf5888",
+        "date_coverage_start": "2019-01",
+        "date_coverage_end": "2024-12",
+        "geographic_coverage": [
+          "Baringo",
+          "Garissa",
+          "Mandera",
+          "Marsabit",
+          "Turkana"
+        ],
+        "row_count": 360,
+        "schema_version": "1.0",
+        "ingestion_status": "success",
+        "staleness_days": 663,
+        "is_stale": true
+      },
+      {
+        "asset_id": "rainfall_chirps-20260925144803-bc0ee869",
+        "dataset_name": "rainfall_chirps",
+        "source_provider": "UCSB Climate Hazards Center / USGS FEWS NET",
+        "source_url": "https://data.chc.ucsb.edu/products/CHIRPS-2.0/africa_monthly/tifs/",
+        "retrieval_timestamp": "2026-09-25T14:48:03.531299+00:00",
         "file_path": "data/raw/climate/kenya_asal_monthly_rainfall.csv",
         "file_size_bytes": 9639,
         "sha256_checksum": "bc0ee869c9bd00aeb5b79034754c5ca4cc87963e1722e65a30bdc617adcf5888",
@@ -341,6 +365,30 @@
         "ingestion_status": "success",
         "staleness_days": 633,
         "is_stale": true
+      },
+      {
+        "asset_id": "ipc_food_security-20260925144803-87c28efa",
+        "dataset_name": "ipc_food_security",
+        "source_provider": "Kenya Food Security Steering Group (KFSSG) / IPC GSU",
+        "source_url": "https://www.ipcinfo.org/ipc-country-analysis/details-page/en/c/kenya",
+        "retrieval_timestamp": "2026-09-25T14:48:03.665611+00:00",
+        "file_path": "data/raw/ipc/kenya_asal_ipc_historical.csv",
+        "file_size_bytes": 2790,
+        "sha256_checksum": "87c28efac8d5f7a7d25f0f93fa6d4f4812e0cae983e3ca8ea32454a7656a2a20",
+        "date_coverage_start": "2019-01-01",
+        "date_coverage_end": "2024-12-31",
+        "geographic_coverage": [
+          "Baringo",
+          "Garissa",
+          "Mandera",
+          "Marsabit",
+          "Turkana"
+        ],
+        "row_count": 60,
+        "schema_version": "1.0",
+        "ingestion_status": "success",
+        "staleness_days": 633,
+        "is_stale": true
       }
     ],
     "vegetation_modis": [
@@ -487,6 +535,30 @@
         "ingestion_status": "success",
         "staleness_days": 663,
         "is_stale": true
+      },
+      {
+        "asset_id": "vegetation_modis-20260925144803-6abdfc1e",
+        "dataset_name": "vegetation_modis",
+        "source_provider": "NASA LP DAAC / USGS",
+        "source_url": "https://lpdaac.usgs.gov/products/mod13a2v061/",
+        "retrieval_timestamp": "2026-09-25T14:48:03.581655+00:00",
+        "file_path": "data/raw/vegetation/kenya_asal_monthly_ndvi.csv",
+        "file_size_bytes": 10028,
+        "sha256_checksum": "6abdfc1ed1ae0927d4896bd6da585ab352e1447677f28a024f203b66590c07d8",
+        "date_coverage_start": "2019-01",
+        "date_coverage_end": "2024-12",
+        "geographic_coverage": [
+          "Baringo",
+          "Garissa",
+          "Mandera",
+          "Marsabit",
+          "Turkana"
+        ],
+        "row_count": 360,
+        "schema_version": "1.0",
+        "ingestion_status": "success",
+        "staleness_days": 663,
+        "is_stale": true
       }
     ],
     "market_prices": [
@@ -616,6 +688,30 @@
         "source_provider": "KNBS / WFP VAM / Humanitarian Data Exchange",
         "source_url": "https://data.humdata.org/dataset/wfp-food-prices-for-kenya",
         "retrieval_timestamp": "2026-09-25T14:29:14.211819+00:00",
+        "file_path": "data/raw/market/kenya_asal_maize_prices.csv",
+        "file_size_bytes": 10642,
+        "sha256_checksum": "ebd9a0955483816e53192719c4de779cc2ed12e35bf12a23662c8b8adcd2b7c7",
+        "date_coverage_start": "2019-01",
+        "date_coverage_end": "2024-12",
+        "geographic_coverage": [
+          "Baringo",
+          "Garissa",
+          "Mandera",
+          "Marsabit",
+          "Turkana"
+        ],
+        "row_count": 360,
+        "schema_version": "1.0",
+        "ingestion_status": "success",
+        "staleness_days": 663,
+        "is_stale": true
+      },
+      {
+        "asset_id": "market_prices-20260925144803-ebd9a095",
+        "dataset_name": "market_prices",
+        "source_provider": "KNBS / WFP VAM / Humanitarian Data Exchange",
+        "source_url": "https://data.humdata.org/dataset/wfp-food-prices-for-kenya",
+        "retrieval_timestamp": "2026-09-25T14:48:03.639122+00:00",
         "file_path": "data/raw/market/kenya_asal_maize_prices.csv",
         "file_size_bytes": 10642,
         "sha256_checksum": "ebd9a0955483816e53192719c4de779cc2ed12e35bf12a23662c8b8adcd2b7c7",

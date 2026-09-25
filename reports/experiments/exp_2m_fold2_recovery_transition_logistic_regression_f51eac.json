@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_2m_fold2_recovery_transition_logistic_regression_f51eac",
+  "timestamp": "2026-09-25T14:45:26.441572+00:00",
+  "forecast_horizon": 2,
+  "fold_name": "fold2_recovery_transition",
+  "model_name": "logistic_regression",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 300,
+  "test_samples": 50,
+  "recall": 0.0,
+  "precision": 0.0,
+  "f1_score": 0.0,
+  "roc_auc": 0.7083,
+  "pr_auc": 0.2503,
+  "brier_score": 0.1476,
+  "false_negative_rate": 1.0
+}

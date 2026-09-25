@@ -32,6 +32,7 @@ Humanitarian response and agricultural mitigation often suffer from **reaction l
 - [x] **Milestone 3:** Interactive multi-page geospatial decision-support dashboard in Streamlit (`app/Home.py` and 6 specialized pages), Kenya county choropleth risk map, longitudinal multi-indicator timelines, explainability & non-causal attribution panels, data quality & latency audit, and 63 unit tests.
 - [x] **Milestone 4:** Short-horizon food-security risk forecasting (1M, 2M, and 3M ahead), lagged climate/vegetation/market/IPC predictors, expanding-window rolling-origin backtesting, recall-prioritized threshold tuning, Platt probability calibration, multi-horizon metrics and reliability curves, early-warning dashboard (`app/pages/7_Forecast.py`), and 73 unit tests.
 - [x] **Milestone 5:** Automated data ingestion, data source registry (`config/data_sources.yaml`), raw file immutability, operational manifest (`data/manifest.json`), schema drift detection (`agririsk.validation.drift_detector`), canonical county reference registry (`agririsk.geospatial.reference`), end-to-end pipeline orchestrator (`agririsk.pipeline`), Docker containerization (`Dockerfile`, `docker-compose.yml`), task runner (`Makefile`), dynamic dashboard freshness audit, and 82 unit tests.
+- [x] **Milestone 6:** Research-grade model evaluation, simple baselines (Persistence, Historical Frequency, Seasonal), 47-county Queen spatial adjacency & distance-decay features, zero spatial leakage safeguards, feature group ablation studies, 300-iteration block bootstrap 95% confidence intervals, prediction uncertainty bounds, multi-horizon feature stability, geographic equity audit, Model Card (`docs/model_card.md`), Dataset Card (`docs/dataset_card.md`), Research Report (`reports/research_report.md`), Research Insights dashboard page (`app/pages/8_Research_Insights.py`), and 90 unit tests.
 
 ---
 
@@ -131,6 +132,9 @@ Chronological split: **Train (2019–2022: 225 rows)** $\to$ **Validation (2023:
 - **[Data Dictionary](file:///c:/Users/kexma/code/AgriRiskKenya/docs/data_dictionary.md)**: Column specifications, data types, physical measurement units, and formulas.
 - **[Data Lineage & Provenance](file:///c:/Users/kexma/code/AgriRiskKenya/docs/data_lineage.md)**: End-to-end data lifecycle, Mermaid architecture flow, and integrity invariants.
 - **[Data Sources Specification](file:///c:/Users/kexma/code/AgriRiskKenya/docs/data_sources.md)**: Provider attribution, update cadences, staleness thresholds, and licensing.
+- **[Model Card](file:///c:/Users/kexma/code/AgriRiskKenya/docs/model_card.md)**: Intended uses, ethical boundaries, evaluation performance, and failure modes.
+- **[Dataset Card](file:///c:/Users/kexma/code/AgriRiskKenya/docs/dataset_card.md)**: Source attributions, geographic/temporal coverage, transformations, and biases.
+- **[Research Report](file:///c:/Users/kexma/code/AgriRiskKenya/reports/research_report.md)**: 18-section academic evaluation report with benchmarks, ablations, and uncertainty analysis.
 - **[Methodology Specification](file:///c:/Users/kexma/code/AgriRiskKenya/docs/methodology.md)**: Time-aware validation design, feature mathematics, and recall optimization rationale.
 - **[Limitations & Ethical Guardrails](file:///c:/Users/kexma/code/AgriRiskKenya/docs/limitations.md)**: Known sensor constraints, spatial aggregation issues, and humanitarian disclaimer.
 - **[Multi-Horizon Forecasting Methodology](file:///c:/Users/kexma/code/AgriRiskKenya/docs/forecasting.md)**: Forward target definition, rolling-origin backtesting, threshold tuning, Platt calibration, and early-warning matrix.
@@ -161,8 +165,9 @@ make ingest     # Ingest external sources to raw versioned storage
 make validate   # Check schemas and detect data drift
 make features   # Build model_dataset.csv and forecast_dataset.csv
 make train      # Train baseline and multi-horizon models
+make research   # Run Milestone 6 benchmarks, ablations, bootstrap CI, and report
 make dashboard  # Launch Streamlit decision-support dashboard
-make test       # Run 82 unit and integration tests with pytest
+make test       # Run 90 unit and integration tests with pytest
 ```
 
 ### Docker Execution

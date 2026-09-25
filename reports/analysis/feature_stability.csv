@@ -1,0 +1,29 @@
+feature,mean_importance_score,mean_rank,rank_std,rank_h1,rank_h2,rank_h3,stability_category
+previous_ipc_phase,0.18047,1.0,0.0,1,1,1,Consistently Important
+ndvi_anomaly_lag2,0.00257,5.7,3.09,10,4,3,Moderately Stable
+rainfall_anomaly_lag2,0.00069,8.3,3.3,12,9,4,Moderately Stable
+rainfall_anomaly_lag1,-0.00217,9.3,4.92,3,10,15,Moderately Stable
+consecutive_dry_months,0.00089,9.3,1.25,11,8,9,Moderately Stable
+ndvi_trend_6m,0.00154,9.3,8.99,4,22,2,Moderately Stable
+is_long_rains,0.0,9.7,3.09,7,14,8,Moderately Stable
+number_of_high_risk_neighbours,-0.00227,10.0,6.16,2,17,11,Moderately Stable
+ipc_phase_lag3,-0.00044,10.3,5.25,15,3,13,Horizon-Dependent
+is_arid,0.0,11.3,3.86,13,15,6,Horizon-Dependent
+neighbour_mean_previous_risk,-0.0013,11.7,4.78,16,5,14,Horizon-Dependent
+quarter,-0.00302,12.0,3.27,8,12,16,Horizon-Dependent
+month,-0.00039,12.3,5.73,19,13,5,Horizon-Dependent
+maize_price_change_3m,-0.00407,14.0,9.42,5,27,10,Horizon-Dependent
+is_short_rains,-0.00099,14.3,5.25,17,19,7,Horizon-Dependent
+ndvi_trend_3m,-0.00648,14.3,8.5,6,11,26,Horizon-Dependent
+neighbour_mean_price_change,-0.00406,15.3,4.5,9,18,19,Horizon-Dependent
+maize_price_change_1m,-0.00327,15.3,6.24,22,7,17,Horizon-Dependent
+neighbour_mean_ndvi_anomaly,-0.00383,16.0,1.63,14,16,18,Low Contribution
+maize_price_change_6m,-0.00447,16.7,7.72,20,6,24,Horizon-Dependent
+ipc_phase_lag2,-0.00203,17.3,10.96,27,2,23,Horizon-Dependent
+neighbour_mean_rainfall_anomaly,-0.00664,21.0,6.38,25,26,12,Horizon-Dependent
+ndvi_anomaly_lag3,-0.00685,21.7,1.7,21,24,20,Low Contribution
+ndvi_anomaly_lag1,-0.00761,22.0,2.94,18,23,25,Low Contribution
+rainfall_rolling_3m,-0.00755,22.7,2.49,26,20,22,Low Contribution
+rainfall_anomaly_lag3,-0.00915,24.3,2.87,24,28,21,Low Contribution
+maize_price_zscore,-0.01065,25.0,1.63,23,25,27,Low Contribution
+rainfall_rolling_6m,-0.01687,25.7,3.3,28,21,28,Horizon-Dependent

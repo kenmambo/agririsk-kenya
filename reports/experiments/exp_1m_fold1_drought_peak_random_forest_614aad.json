@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_1m_fold1_drought_peak_random_forest_614aad",
+  "timestamp": "2026-09-25T14:43:29.356965+00:00",
+  "forecast_horizon": 1,
+  "fold_name": "fold1_drought_peak",
+  "model_name": "random_forest",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 240,
+  "test_samples": 60,
+  "recall": 1.0,
+  "precision": 0.92,
+  "f1_score": 0.9583,
+  "roc_auc": 0.941,
+  "pr_auc": 0.9697,
+  "brier_score": 0.0805,
+  "false_negative_rate": 0.0
+}

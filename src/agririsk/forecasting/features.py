@@ -43,6 +43,12 @@ FORECAST_FEATURE_COLUMNS: List[str] = [
     "is_short_rains",
     # Ecological context
     "is_arid",
+    # Spatial neighbourhood context (Milestone 6)
+    "neighbour_mean_rainfall_anomaly",
+    "neighbour_mean_ndvi_anomaly",
+    "neighbour_mean_price_change",
+    "neighbour_mean_previous_risk",
+    "number_of_high_risk_neighbours",
 ]
 
 
@@ -197,6 +203,14 @@ class ForecastFeatureEngineer:
                 long_rows.append(long_record)
 
         forecast_df = pd.DataFrame(long_rows)
+
+        # Enrich with leakage-safe spatial features
+        try:
+            from agririsk.geospatial.spatial_features import SpatialFeatureEngineer
+            spatial_eng = SpatialFeatureEngineer()
+            forecast_df = spatial_eng.add_spatial_features(forecast_df)
+        except Exception as e:
+            logger.warning("Spatial feature enrichment skipped: %s", e)
 
         # Save to disk
         out_path.parent.mkdir(parents=True, exist_ok=True)

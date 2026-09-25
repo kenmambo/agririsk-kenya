@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_3m_fold2_recovery_transition_persistence_5768de",
+  "timestamp": "2026-09-25T14:42:31.516381+00:00",
+  "forecast_horizon": 3,
+  "fold_name": "fold2_recovery_transition",
+  "model_name": "persistence",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 300,
+  "test_samples": 45,
+  "recall": 1.0,
+  "precision": 0.375,
+  "f1_score": 0.5455,
+  "roc_auc": 0.8718,
+  "pr_auc": 0.375,
+  "brier_score": 0.2222,
+  "false_negative_rate": 0.0
+}

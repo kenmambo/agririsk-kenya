@@ -1,0 +1,6 @@
+county_name,observation_date,horizon,target_phase3plus,predicted_prob,predicted_class,rainfall_anomaly_lag1,ndvi_anomaly_lag1,maize_price_zscore,previous_ipc_phase,neighbour_mean_rainfall_anomaly,number_of_high_risk_neighbours
+Turkana,2024-05-01,1,1,0.4826,0,64.9,57.1,0.3774099219630856,3.0,30.9,1
+Marsabit,2024-02-01,2,1,0.4948,0,73.6,85.8,0.1325779591600222,3.0,62.9,1
+Marsabit,2024-02-01,3,1,0.4875,0,73.6,85.8,0.1325779591600222,3.0,62.9,1
+Marsabit,2024-03-01,3,1,0.401,0,26.2,26.5,-0.0510762862517366,3.0,22.6,1
+Turkana,2024-03-01,3,1,0.4937,0,5.2,0.8,0.0482281975750429,3.0,26.2,1

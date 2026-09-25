@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_1m_fold1_drought_peak_persistence_226039",
+  "timestamp": "2026-09-25T14:42:15.675360+00:00",
+  "forecast_horizon": 1,
+  "fold_name": "fold1_drought_peak",
+  "model_name": "persistence",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 240,
+  "test_samples": 60,
+  "recall": 1.0,
+  "precision": 0.9388,
+  "f1_score": 0.9684,
+  "roc_auc": 0.8929,
+  "pr_auc": 0.9388,
+  "brier_score": 0.05,
+  "false_negative_rate": 0.0
+}

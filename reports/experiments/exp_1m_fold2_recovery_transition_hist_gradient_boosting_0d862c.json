@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_1m_fold2_recovery_transition_hist_gradient_boosting_0d862c",
+  "timestamp": "2026-09-25T14:43:32.606702+00:00",
+  "forecast_horizon": 1,
+  "fold_name": "fold2_recovery_transition",
+  "model_name": "hist_gradient_boosting",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 300,
+  "test_samples": 55,
+  "recall": 0.2,
+  "precision": 0.2,
+  "f1_score": 0.2,
+  "roc_auc": 0.6622,
+  "pr_auc": 0.2808,
+  "brier_score": 0.2083,
+  "false_negative_rate": 0.8
+}

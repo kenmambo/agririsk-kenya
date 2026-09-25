@@ -1,0 +1,44 @@
+{
+  "recall": {
+    "estimate": 0.7,
+    "ci_lower": 0.5,
+    "ci_upper": 0.9167,
+    "std": 0.1106
+  },
+  "precision": {
+    "estimate": 0.6364,
+    "ci_lower": 0.3083,
+    "ci_upper": 1.0,
+    "std": 0.1946
+  },
+  "f1": {
+    "estimate": 0.6667,
+    "ci_lower": 0.4,
+    "ci_upper": 0.8691,
+    "std": 0.1284
+  },
+  "roc_auc": {
+    "estimate": 0.9178,
+    "ci_lower": 0.8302,
+    "ci_upper": 1.0,
+    "std": 0.0463
+  },
+  "pr_auc": {
+    "estimate": 0.5584,
+    "ci_lower": 0.31,
+    "ci_upper": 1.0,
+    "std": 0.1917
+  },
+  "brier_score": {
+    "estimate": 0.093,
+    "ci_lower": 0.0438,
+    "ci_upper": 0.1407,
+    "std": 0.0242
+  },
+  "false_negative_rate": {
+    "estimate": 0.3,
+    "ci_lower": 0.0833,
+    "ci_upper": 0.5,
+    "std": 0.1106
+  }
+}

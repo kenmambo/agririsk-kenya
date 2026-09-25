@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_1m_fold1_drought_peak_logistic_regression_598504",
+  "timestamp": "2026-09-25T14:45:21.231236+00:00",
+  "forecast_horizon": 1,
+  "fold_name": "fold1_drought_peak",
+  "model_name": "logistic_regression",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 240,
+  "test_samples": 60,
+  "recall": 0.8696,
+  "precision": 0.9756,
+  "f1_score": 0.9195,
+  "roc_auc": 0.9317,
+  "pr_auc": 0.9709,
+  "brier_score": 0.0835,
+  "false_negative_rate": 0.1304
+}

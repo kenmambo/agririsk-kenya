@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_2m_fold2_recovery_transition_historical_frequency_1d6056",
+  "timestamp": "2026-09-25T14:45:26.365546+00:00",
+  "forecast_horizon": 2,
+  "fold_name": "fold2_recovery_transition",
+  "model_name": "historical_frequency",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 300,
+  "test_samples": 50,
+  "recall": 1.0,
+  "precision": 0.16,
+  "f1_score": 0.2759,
+  "roc_auc": 0.5,
+  "pr_auc": 0.16,
+  "brier_score": 0.2738,
+  "false_negative_rate": 0.0
+}

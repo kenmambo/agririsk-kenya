@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_2m_fold2_recovery_transition_random_forest_cc52e0",
+  "timestamp": "2026-09-25T14:43:37.743432+00:00",
+  "forecast_horizon": 2,
+  "fold_name": "fold2_recovery_transition",
+  "model_name": "random_forest",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 300,
+  "test_samples": 50,
+  "recall": 0.875,
+  "precision": 0.4667,
+  "f1_score": 0.6087,
+  "roc_auc": 0.8958,
+  "pr_auc": 0.5833,
+  "brier_score": 0.112,
+  "false_negative_rate": 0.125
+}

@@ -1,0 +1,18 @@
+{
+  "experiment_id": "exp_3m_fold1_drought_peak_hist_gradient_boosting_6f94c7",
+  "timestamp": "2026-09-25T14:43:43.431589+00:00",
+  "forecast_horizon": 3,
+  "fold_name": "fold1_drought_peak",
+  "model_name": "hist_gradient_boosting",
+  "feature_set": "all_features",
+  "num_features": 28,
+  "train_samples": 240,
+  "test_samples": 60,
+  "recall": 0.881,
+  "precision": 0.881,
+  "f1_score": 0.881,
+  "roc_auc": 0.8876,
+  "pr_auc": 0.9407,
+  "brier_score": 0.1342,
+  "false_negative_rate": 0.119
+}
