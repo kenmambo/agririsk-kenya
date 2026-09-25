@@ -1,0 +1,37 @@
+project:
+  name: "AgriRisk Kenya"
+  version: "0.1.0"
+  description: "County-level early-warning and decision-support prototype for climate-resilient agriculture and food security in Kenya."
+
+environment: "base"
+log_level: "INFO"
+
+paths:
+  data_dir: "data"
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  fixtures_dir: "data/fixtures"
+  models_dir: "artifacts/models"
+
+database:
+  url: "sqlite:///data/agririsk.db"
+  echo_sql: false
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+  title: "AgriRisk Kenya API"
+  version: "v1"
+
+dashboard:
+  port: 8501
+
+geospatial:
+  country_name: "Kenya"
+  num_counties: 47
+  default_crs: "EPSG:4326"
+
+modeling:
+  random_seed: 42
+  test_size_months: 6
+  target_column: "ipc_phase"

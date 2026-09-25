@@ -1,0 +1,6 @@
+environment: "test"
+log_level: "WARNING"
+
+database:
+  url: "sqlite:///:memory:"
+  echo_sql: false

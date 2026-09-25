@@ -1,0 +1,6 @@
+environment: "development"
+log_level: "DEBUG"
+
+database:
+  url: "sqlite:///data/agririsk.db"
+  echo_sql: false
