@@ -1,0 +1,49 @@
+{
+  "evaluated_at": "2026-09-25T14:29:14.272525+00:00",
+  "sources": {
+    "rainfall_chirps": {
+      "name": "rainfall_chirps",
+      "provider": "UCSB Climate Hazards Center / USGS FEWS NET",
+      "status": "Warning (Stale)",
+      "staleness_days": 663,
+      "is_stale": true,
+      "row_count": 360,
+      "completeness_pct": 100.0,
+      "date_coverage_end": "2024-12",
+      "sha256_prefix": "bc0ee869"
+    },
+    "vegetation_modis": {
+      "name": "vegetation_modis",
+      "provider": "NASA LP DAAC / USGS",
+      "status": "Warning (Stale)",
+      "staleness_days": 663,
+      "is_stale": true,
+      "row_count": 360,
+      "completeness_pct": 100.0,
+      "date_coverage_end": "2024-12",
+      "sha256_prefix": "6abdfc1e"
+    },
+    "market_prices": {
+      "name": "market_prices",
+      "provider": "KNBS / WFP VAM / Humanitarian Data Exchange",
+      "status": "Warning (Stale)",
+      "staleness_days": 663,
+      "is_stale": true,
+      "row_count": 360,
+      "completeness_pct": 100.0,
+      "date_coverage_end": "2024-12",
+      "sha256_prefix": "ebd9a095"
+    },
+    "ipc_food_security": {
+      "name": "ipc_food_security",
+      "provider": "Kenya Food Security Steering Group (KFSSG) / IPC GSU",
+      "status": "Warning (Stale)",
+      "staleness_days": 633,
+      "is_stale": true,
+      "row_count": 60,
+      "completeness_pct": 100.0,
+      "date_coverage_end": "2024-12-31",
+      "sha256_prefix": "87c28efa"
+    }
+  }
+}

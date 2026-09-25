@@ -1,0 +1,115 @@
+# AgriRisk Kenya - Data Source Registry
+# Defines upstream providers, collection methods, schemas, and staleness rules.
+
+version: "1.0"
+
+sources:
+  rainfall_chirps:
+    name: "CHIRPS Monthly Precipitation"
+    provider: "UCSB Climate Hazards Center / USGS FEWS NET"
+    description: "Climate Hazards Group InfraRed Precipitation with Station data (0.05° gridded)"
+    source_type: "http_raster"
+    url: "https://data.chc.ucsb.edu/products/CHIRPS-2.0/africa_monthly/tifs/"
+    update_frequency: "monthly"
+    staleness_warning_days: 45
+    geographic_level: "county"
+    temporal_resolution: "monthly"
+    expected_format: "csv_or_geotiff"
+    local_raw_dir: "data/raw/climate"
+    default_filename: "kenya_asal_monthly_rainfall.csv"
+    enabled: true
+    requires_auth: false
+    license_notes: "Public domain (USGS / UCSB)"
+    expected_columns:
+      - county_name
+      - year
+      - month
+      - rainfall_mm
+      - rainfall_anomaly
+
+  vegetation_modis:
+    name: "MODIS Vegetation Indices (NDVI)"
+    provider: "NASA LP DAAC / USGS"
+    description: "16-day 1km Terra/Aqua MODIS normalized difference vegetation index"
+    source_type: "api_or_file"
+    url: "https://lpdaac.usgs.gov/products/mod13a2v061/"
+    update_frequency: "16-day"
+    staleness_warning_days: 40
+    geographic_level: "county"
+    temporal_resolution: "monthly"
+    expected_format: "csv"
+    local_raw_dir: "data/raw/vegetation"
+    default_filename: "kenya_asal_monthly_ndvi.csv"
+    enabled: true
+    requires_auth: false
+    license_notes: "NASA Open Data Policy"
+    expected_columns:
+      - county_name
+      - year
+      - month
+      - ndvi_mean
+      - ndvi_anomaly
+
+  market_prices:
+    name: "Kenya Staple Food Wholesale Prices"
+    provider: "KNBS / WFP VAM / Humanitarian Data Exchange"
+    description: "Monthly wholesale dry maize market prices (KES per 90kg bag)"
+    source_type: "http_csv"
+    url: "https://data.humdata.org/dataset/wfp-food-prices-for-kenya"
+    update_frequency: "monthly"
+    staleness_warning_days: 60
+    geographic_level: "county"
+    temporal_resolution: "monthly"
+    expected_format: "csv"
+    local_raw_dir: "data/raw/market"
+    default_filename: "kenya_asal_maize_prices.csv"
+    enabled: true
+    requires_auth: false
+    license_notes: "Creative Commons Attribution for Humanitarian Data"
+    expected_columns:
+      - county_name
+      - year
+      - month
+      - commodity
+      - price
+
+  ipc_food_security:
+    name: "IPC Acute Food Insecurity Classifications"
+    provider: "Kenya Food Security Steering Group (KFSSG) / IPC GSU"
+    description: "Official acute phase classifications and Phase 3+ population estimates"
+    source_type: "file_import"
+    url: "https://www.ipcinfo.org/ipc-country-analysis/details-page/en/c/kenya"
+    update_frequency: "biannual"
+    staleness_warning_days: 180
+    geographic_level: "county"
+    temporal_resolution: "biannual_expanded_to_monthly"
+    expected_format: "csv"
+    local_raw_dir: "data/raw/ipc"
+    default_filename: "kenya_asal_ipc_historical.csv"
+    enabled: true
+    requires_auth: false
+    license_notes: "IPC Global Support Unit public analysis"
+    expected_columns:
+      - county_name
+      - period_start
+      - period_end
+      - ipc_phase
+      - phase3plus_population
+      - phase3plus_percent
+
+  county_boundaries:
+    name: "Kenya County Administrative Boundaries"
+    provider: "IEBC / Kenya National Bureau of Statistics"
+    description: "Official 47 county boundary polygons and centroid coordinates"
+    source_type: "file_geojson"
+    url: "https://data.humdata.org/dataset/cod-ab-ken"
+    update_frequency: "static"
+    staleness_warning_days: 365
+    geographic_level: "county"
+    temporal_resolution: "static"
+    expected_format: "geojson"
+    local_raw_dir: "data/geospatial"
+    default_filename: "kenya_counties.geojson"
+    enabled: true
+    requires_auth: false
+    license_notes: "Open Government Data Kenya"

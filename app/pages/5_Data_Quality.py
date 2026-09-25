@@ -115,8 +115,76 @@ st.caption(
 
 st.divider()
 
+# Operational Data Freshness & Source Registry
+st.subheader("⏱️ Operational Data Source Freshness & Registry")
+
+import json
+from pathlib import Path
+
+dq_latest_file = Path("reports/data_quality/latest.json")
+if dq_latest_file.exists():
+    with open(dq_latest_file, "r", encoding="utf-8") as f:
+        dq_report = json.load(f)
+
+    st.caption(f"Last Pipeline Evaluation: `{dq_report.get('evaluated_at', 'Unknown')}`")
+    source_rows = []
+    for k, sinfo in dq_report.get("sources", {}).items():
+        status_str = sinfo.get("status", "Unknown")
+        status_badge = (
+            f"🟢 {status_str}" if "Current" in status_str else
+            f"🟡 {status_str}" if "Warning" in status_str else
+            f"🔴 {status_str}"
+        )
+        source_rows.append({
+            "Dataset Identifier": k,
+            "Provider": sinfo.get("provider", "Unknown"),
+            "Date Coverage End": sinfo.get("date_coverage_end", "Unknown"),
+            "Staleness (Days)": sinfo.get("staleness_days", 0),
+            "Operational Status": status_badge,
+            "Rows Cached": sinfo.get("row_count", 0),
+            "SHA-256 Digest": sinfo.get("sha256_prefix", "") + "..."
+        })
+
+    if source_rows:
+        st.dataframe(pd.DataFrame(source_rows), use_container_width=True)
+else:
+    st.info("No data quality report found. Run `uv run python -m agririsk.pipeline run` to generate the latest report.")
+
+st.divider()
+
+# Pipeline Execution History
+st.subheader("📜 Pipeline Execution History")
+
+reports_dir = Path("reports/pipeline")
+run_records = []
+if reports_dir.exists():
+    for r_file in sorted(reports_dir.glob("*.json"), reverse=True)[:10]:
+        try:
+            with open(r_file, "r", encoding="utf-8") as f:
+                r_data = json.load(f)
+                run_status = r_data.get("status", "unknown").upper()
+                badge = "🟢 SUCCESS" if run_status == "SUCCESS" else ("🟡 PARTIAL" if "PARTIAL" in run_status else "🔴 FAILED")
+                run_records.append({
+                    "Run ID": r_data.get("run_id", r_file.stem),
+                    "Timestamp": r_data.get("start_time", "Unknown")[:19].replace("T", " "),
+                    "Status": badge,
+                    "Dry Run": "Yes" if r_data.get("dry_run") else "No",
+                    "Sources Attempted": len(r_data.get("sources_attempted", [])),
+                    "Model Rows": r_data.get("model_dataset_rows", "-"),
+                    "Issues Detected": len(r_data.get("validation_issues", {}))
+                })
+        except Exception:
+            continue
+
+if run_records:
+    st.dataframe(pd.DataFrame(run_records), use_container_width=True)
+else:
+    st.caption("No pipeline execution logs recorded yet.")
+
+st.divider()
+
 # Feed Latency & Staleness Monitoring
-st.subheader("⏱️ Data Freshness & Ingestion Latency Characteristics")
+st.subheader("📋 Ingestion Latency Characteristics & Design Rationale")
 
 st.markdown("""
 In operational settings, multi-indicator early warning systems encounter differing transmission latencies across data sources:

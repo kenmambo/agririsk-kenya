@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260925_142852_5120dfa7",
+  "start_time": "2026-09-25T14:28:52.354937+00:00",
+  "sources_attempted": [
+    "rainfall",
+    "vegetation",
+    "market",
+    "ipc"
+  ],
+  "successful_sources": [
+    "rainfall",
+    "vegetation",
+    "market",
+    "ipc"
+  ],
+  "failed_sources": [],
+  "rows_processed": {
+    "rainfall": 360,
+    "vegetation": 360,
+    "market": 360,
+    "ipc": 60
+  },
+  "validation_issues": {},
+  "dry_run": true,
+  "status": "success",
+  "end_time": "2026-09-25T14:28:52.631629+00:00"
+}

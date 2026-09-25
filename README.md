@@ -31,7 +31,7 @@ Humanitarian response and agricultural mitigation often suffer from **reaction l
 - [x] **Milestone 2:** Multi-source data ingestion pipelines, county name standardizer, feature engineering pipeline, data validator, reproducible modeling dataset (`data/processed/model_dataset.csv`), time-aware baseline modeling (Logistic Regression & Random Forest), evaluation metrics emphasizing Recall and False Negative diagnostics, visual report figures, and comprehensive documentation (`docs/`).
 - [x] **Milestone 3:** Interactive multi-page geospatial decision-support dashboard in Streamlit (`app/Home.py` and 6 specialized pages), Kenya county choropleth risk map, longitudinal multi-indicator timelines, explainability & non-causal attribution panels, data quality & latency audit, and 63 unit tests.
 - [x] **Milestone 4:** Short-horizon food-security risk forecasting (1M, 2M, and 3M ahead), lagged climate/vegetation/market/IPC predictors, expanding-window rolling-origin backtesting, recall-prioritized threshold tuning, Platt probability calibration, multi-horizon metrics and reliability curves, early-warning dashboard (`app/pages/7_Forecast.py`), and 73 unit tests.
-- [ ] **Milestone 5:** Live satellite API connectors (CHIRPS & Google Earth Engine), automated pipeline scheduling, and database persistence.
+- [x] **Milestone 5:** Automated data ingestion, data source registry (`config/data_sources.yaml`), raw file immutability, operational manifest (`data/manifest.json`), schema drift detection (`agririsk.validation.drift_detector`), canonical county reference registry (`agririsk.geospatial.reference`), end-to-end pipeline orchestrator (`agririsk.pipeline`), Docker containerization (`Dockerfile`, `docker-compose.yml`), task runner (`Makefile`), dynamic dashboard freshness audit, and 82 unit tests.
 
 ---
 
@@ -129,6 +129,8 @@ Chronological split: **Train (2019–2022: 225 rows)** $\to$ **Validation (2023:
 ## 6. Documentation Reference
 
 - **[Data Dictionary](file:///c:/Users/kexma/code/AgriRiskKenya/docs/data_dictionary.md)**: Column specifications, data types, physical measurement units, and formulas.
+- **[Data Lineage & Provenance](file:///c:/Users/kexma/code/AgriRiskKenya/docs/data_lineage.md)**: End-to-end data lifecycle, Mermaid architecture flow, and integrity invariants.
+- **[Data Sources Specification](file:///c:/Users/kexma/code/AgriRiskKenya/docs/data_sources.md)**: Provider attribution, update cadences, staleness thresholds, and licensing.
 - **[Methodology Specification](file:///c:/Users/kexma/code/AgriRiskKenya/docs/methodology.md)**: Time-aware validation design, feature mathematics, and recall optimization rationale.
 - **[Limitations & Ethical Guardrails](file:///c:/Users/kexma/code/AgriRiskKenya/docs/limitations.md)**: Known sensor constraints, spatial aggregation issues, and humanitarian disclaimer.
 - **[Multi-Horizon Forecasting Methodology](file:///c:/Users/kexma/code/AgriRiskKenya/docs/forecasting.md)**: Forward target definition, rolling-origin backtesting, threshold tuning, Platt calibration, and early-warning matrix.
@@ -140,32 +142,55 @@ Chronological split: **Train (2019–2022: 225 rows)** $\to$ **Validation (2023:
 ### Prerequisites
 - Python 3.12
 - [`uv`](https://github.com/astral-sh/uv) package manager
+- Docker & Docker Compose (optional for containerized deployment)
 
+### Automated Pipeline Execution
+```bash
+# Execute the full automated pipeline (ingest, validate, feature store, train)
+uv run python -m agririsk.pipeline run
+
+# Target specific steps or sources
+uv run python -m agririsk.pipeline run --step validate --dry-run
+uv run python -m agririsk.pipeline run --source rainfall --force-refresh
+```
+
+### Make / Task Runner
+```bash
+make setup      # Install dependencies via uv
+make ingest     # Ingest external sources to raw versioned storage
+make validate   # Check schemas and detect data drift
+make features   # Build model_dataset.csv and forecast_dataset.csv
+make train      # Train baseline and multi-horizon models
+make dashboard  # Launch Streamlit decision-support dashboard
+make test       # Run 82 unit and integration tests with pytest
+```
+
+### Docker Execution
+```bash
+# Build and launch dashboard service
+docker compose up dashboard
+
+# Run the data pipeline container
+docker compose run --rm pipeline
+```
+
+### Step-by-Step Manual Commands
 ```bash
 # 1. Install all dependencies using uv
-uv sync
+uv sync && uv pip install -e .
 
 # 2. Setup SQLite database and seed 47 Kenya counties
 uv run python scripts/setup_db.py
 
-# 3. Generate raw pilot datasets (Turkana, Marsabit, Mandera, Garissa, Baringo)
-uv run python scripts/generate_pilot_raw_data.py
+# 3. Ingest data and rebuild feature store via orchestrator
+uv run python -m agririsk.pipeline run
 
-# 4. Build and validate the county-month modeling dataset (data/processed/model_dataset.csv)
-uv run python scripts/build_modeling_dataset.py
-
-# 5. Train baseline models, evaluate metrics, and export figures
-uv run python scripts/train_baseline_models.py
-
-# 6. Train multi-horizon forecasting models, run rolling-origin backtests, and export calibration curves
-uv run python scripts/train_forecast_models.py
-
-# 7. Run the complete pytest test suite (73 unit tests)
+# 4. Run the complete pytest test suite (82 unit tests)
 uv run pytest
 
-# 8. Start the FastAPI backend
-uv run uvicorn agririsk.api.app:app --host 127.0.0.1 --port 8000 --reload
+# 5. Start the FastAPI backend
+uv run uvicorn agririsk.api.main:app --host 127.0.0.1 --port 8000 --reload
 
-# 9. Launch the interactive multi-page Decision-Support Dashboard
+# 6. Launch the interactive multi-page Decision-Support Dashboard
 uv run streamlit run app/Home.py
 ```
