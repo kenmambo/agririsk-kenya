@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "task": "Predict acute food insecurity (target_phase3plus == 1)",
+    "pilot_counties": [
+      "Baringo",
+      "Garissa",
+      "Mandera",
+      "Marsabit",
+      "Turkana"
+    ],
+    "train_years": [
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "validation_years": [
+      2023
+    ],
+    "test_years": [
+      2024
+    ],
+    "train_samples": 225,
+    "validation_samples": 60,
+    "test_samples": 60
+  },
+  "test_results": {
+    "logistic_regression": {
+      "model_name": "Logistic Regression",
+      "sample_size": 60,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.9236,
+      "confusion_matrix": {
+        "true_negatives": 48,
+        "false_positives": 0,
+        "false_negatives": 12,
+        "true_positives": 0,
+        "matrix_array": [
+          [
+            48,
+            0
+          ],
+          [
+            12,
+            0
+          ]
+        ]
+      },
+      "early_warning_diagnostics": {
+        "false_negative_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "commentary": "Recall is 0.0%. Out of 12 true Crisis periods, the model correctly flagged 0 and missed 12 (False Negative Rate: 100.0%)."
+      }
+    },
+    "random_forest": {
+      "model_name": "Random Forest",
+      "sample_size": 60,
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571,
+      "roc_auc": 0.9575,
+      "confusion_matrix": {
+        "true_negatives": 44,
+        "false_positives": 4,
+        "false_negatives": 0,
+        "true_positives": 12,
+        "matrix_array": [
+          [
+            44,
+            4
+          ],
+          [
+            0,
+            12
+          ]
+        ]
+      },
+      "early_warning_diagnostics": {
+        "false_negative_rate": 0.0,
+        "false_positive_rate": 0.0833,
+        "commentary": "Recall is 100.0%. Out of 12 true Crisis periods, the model correctly flagged 12 and missed 0 (False Negative Rate: 0.0%)."
+      }
+    }
+  },
+  "validation_results": {
+    "logistic_regression": {
+      "model_name": "Logistic Regression (Val)",
+      "sample_size": 60,
+      "precision": 0.9302,
+      "recall": 0.8333,
+      "f1": 0.8791,
+      "roc_auc": 0.8299,
+      "confusion_matrix": {
+        "true_negatives": 9,
+        "false_positives": 3,
+        "false_negatives": 8,
+        "true_positives": 40,
+        "matrix_array": [
+          [
+            9,
+            3
+          ],
+          [
+            8,
+            40
+          ]
+        ]
+      },
+      "early_warning_diagnostics": {
+        "false_negative_rate": 0.1667,
+        "false_positive_rate": 0.25,
+        "commentary": "Recall is 83.3%. Out of 48 true Crisis periods, the model correctly flagged 40 and missed 8 (False Negative Rate: 16.7%)."
+      }
+    },
+    "random_forest": {
+      "model_name": "Random Forest (Val)",
+      "sample_size": 60,
+      "precision": 0.9574,
+      "recall": 0.9375,
+      "f1": 0.9474,
+      "roc_auc": 0.9115,
+      "confusion_matrix": {
+        "true_negatives": 10,
+        "false_positives": 2,
+        "false_negatives": 3,
+        "true_positives": 45,
+        "matrix_array": [
+          [
+            10,
+            2
+          ],
+          [
+            3,
+            45
+          ]
+        ]
+      },
+      "early_warning_diagnostics": {
+        "false_negative_rate": 0.0625,
+        "false_positive_rate": 0.1667,
+        "commentary": "Recall is 93.8%. Out of 48 true Crisis periods, the model correctly flagged 45 and missed 3 (False Negative Rate: 6.2%)."
+      }
+    }
+  }
+}

@@ -31,10 +31,6 @@ ENV/
 *.sqlite
 *.sqlite3
 *.db
-data/raw/*
-!data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
 data/*.db
 
 # Artifacts

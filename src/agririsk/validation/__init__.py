@@ -6,10 +6,12 @@ from agririsk.validation.schemas import (
     CountyRead,
     HealthResponse,
 )
+from agririsk.validation.data_validator import DataValidator
 
 __all__ = [
     "CountyBase",
     "CountyCreate",
     "CountyRead",
     "HealthResponse",
+    "DataValidator",
 ]
