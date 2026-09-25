@@ -6,6 +6,7 @@ import os
 import yaml
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings
+from agririsk.version import APP_VERSION, MODEL_VERSION, DATASET_VERSION
 
 # Absolute path to repository root
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
@@ -16,6 +17,7 @@ class PathsConfig(BaseModel):
     data_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "data")
     raw_data_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "data" / "raw")
     processed_data_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "data" / "processed")
+    demo_data_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "data" / "demo")
     fixtures_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "data" / "fixtures")
     models_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "artifacts" / "models")
 
@@ -87,11 +89,14 @@ class Settings(BaseSettings):
     """Root application settings class with typed schemas and environment variable support."""
 
     app_env: str = Field(default="development", alias="APP_ENV")
+    agririsk_mode: str = Field(default="standard", alias="AGRIRISK_MODE")
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
 
     # Project metadata
     project_name: str = "AgriRisk Kenya"
-    version: str = "0.1.0"
+    version: str = APP_VERSION
+    model_version: str = MODEL_VERSION
+    dataset_version: str = DATASET_VERSION
 
     # Sub-configurations
     paths: PathsConfig = Field(default_factory=PathsConfig)
@@ -108,6 +113,7 @@ class Settings(BaseSettings):
 
         # Allow environment variables to override values
         env = os.getenv("APP_ENV", raw_config.get("environment", "development"))
+        mode = os.getenv("AGRIRISK_MODE", "standard")
         log_level = os.getenv("LOG_LEVEL", raw_config.get("log_level", "INFO"))
         db_url = os.getenv("DATABASE_URL")
         api_host = os.getenv("API_HOST")
@@ -129,19 +135,28 @@ class Settings(BaseSettings):
         modeling_dict = raw_config.get("modeling", {})
 
         # Resolve paths relative to PROJECT_ROOT if strings
+        resolved_processed = PROJECT_ROOT / paths_dict.get("processed_data_dir", "data/processed")
+        demo_dir = PROJECT_ROOT / "data" / "demo"
+        if mode == "demo" and (demo_dir / "forecast_dataset.csv").exists():
+            resolved_processed = demo_dir
+
         resolved_paths = PathsConfig(
             data_dir=PROJECT_ROOT / paths_dict.get("data_dir", "data"),
             raw_data_dir=PROJECT_ROOT / paths_dict.get("raw_data_dir", "data/raw"),
-            processed_data_dir=PROJECT_ROOT / paths_dict.get("processed_data_dir", "data/processed"),
+            processed_data_dir=resolved_processed,
+            demo_data_dir=demo_dir,
             fixtures_dir=PROJECT_ROOT / paths_dict.get("fixtures_dir", "data/fixtures"),
             models_dir=PROJECT_ROOT / paths_dict.get("models_dir", "artifacts/models"),
         )
 
         return cls(
             APP_ENV=env,
+            AGRIRISK_MODE=mode,
             LOG_LEVEL=log_level,
             project_name=raw_config.get("project", {}).get("name", "AgriRisk Kenya"),
-            version=raw_config.get("project", {}).get("version", "0.1.0"),
+            version=raw_config.get("project", {}).get("version", APP_VERSION),
+            model_version=MODEL_VERSION,
+            dataset_version=DATASET_VERSION,
             paths=resolved_paths,
             database=DatabaseConfig(**db_dict),
             api=ApiConfig(**api_dict),
@@ -155,6 +170,7 @@ class Settings(BaseSettings):
         self.paths.data_dir.mkdir(parents=True, exist_ok=True)
         self.paths.raw_data_dir.mkdir(parents=True, exist_ok=True)
         self.paths.processed_data_dir.mkdir(parents=True, exist_ok=True)
+        self.paths.demo_data_dir.mkdir(parents=True, exist_ok=True)
         self.paths.fixtures_dir.mkdir(parents=True, exist_ok=True)
         self.paths.models_dir.mkdir(parents=True, exist_ok=True)
 

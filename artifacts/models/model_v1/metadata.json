@@ -1,0 +1,16 @@
+{
+  "model_version": "v1.0.0-rf-calibrated",
+  "creation_date": "2026-09-25",
+  "framework": "scikit-learn",
+  "algorithm": "Balanced Random Forest + Platt Calibration",
+  "objective": "Binary Classification of IPC Phase 3+ Food Insecurity",
+  "lead_time_months": 1,
+  "validation_metrics": {
+    "recall": 0.8333,
+    "f1": 0.7692,
+    "brier_score": 0.125,
+    "pr_auc": 0.75,
+    "roc_auc": 0.9575
+  },
+  "intended_use": "Research and decision support for anticipatory action in Kenya ASALs"
+}

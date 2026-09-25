@@ -1,0 +1,105 @@
+name: AgriRisk Kenya CI/CD & Quality Suite
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-verify:
+    name: Test Suite & Deployment Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv package manager
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - name: Install dependencies
+        run: |
+          uv sync --frozen
+          uv pip install -e .
+
+      - name: Code syntax & import integrity check
+        run: |
+          uv run python -c "
+          import agririsk
+          from agririsk.version import APP_VERSION, MODEL_VERSION, DATASET_VERSION
+          from agririsk.core.config import settings
+          from agririsk.forecasting.artifact_loader import ModelArtifactManager
+          print(f'Import OK: AgriRisk v{APP_VERSION} (model={MODEL_VERSION}, dataset={DATASET_VERSION})')
+          mgr = ModelArtifactManager()
+          mgr.load()
+          print('Model artifact loaded and validated successfully.')
+          "
+
+      - name: Execute Pytest unit and integration test suite
+        run: |
+          uv run pytest tests/ -v --durations=10
+
+      - name: Verify terminal demo mode execution
+        run: |
+          uv run python scripts/demo_mode.py
+
+      - name: Verify FastAPI health check endpoint
+        run: |
+          uv run python -c "
+          from fastapi.testclient import TestClient
+          from agririsk.api.app import app
+          client = TestClient(app)
+          resp = client.get('/health')
+          assert resp.status_code == 200, f'Health check failed: {resp.text}'
+          data = resp.json()
+          assert data['status'] == 'healthy'
+          print('FastAPI /health check passed:', data)
+          version_resp = client.get('/version')
+          assert version_resp.status_code == 200
+          print('FastAPI /version check passed:', version_resp.json())
+          "
+
+      - name: Validate demo snapshot data integrity
+        run: |
+          test -f data/demo/forecast_dataset.csv
+          test -f data/demo/model_dataset.csv
+          test -f data/demo/kenya_counties.geojson
+          test -f data/demo/manifest.json
+          test -f data/demo/README.md
+          echo "Demo dataset structure validated successfully."
+
+  docker-build:
+    name: Build & Validate Docker Image
+    needs: test-and-verify
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image (dry-run without push)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: agririsk-kenya:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

@@ -1,7 +1,7 @@
 """Pydantic validation schemas for domain entities and API contracts."""
 
 import datetime as dt
-from typing import Literal
+from typing import Literal, List, Optional, Dict, Any
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from agririsk.core.constants import COUNTY_CODE_MAP
 
@@ -57,7 +57,10 @@ class HealthResponse(BaseModel):
         status: Overall service health status ('healthy' or 'degraded').
         app_name: Name of the application.
         version: Application semantic version.
-        environment: Active operational environment (e.g. 'development', 'test').
+        app_version: Application semantic version.
+        model_version: Serialized model artifact version.
+        dataset_version: Underlying panel dataset version.
+        environment: Active operational environment (e.g. 'development', 'test', 'production').
         database_status: Connectivity status to the SQLite/PostgreSQL database.
         timestamp: Time of health check in UTC.
     """
@@ -65,6 +68,72 @@ class HealthResponse(BaseModel):
     status: str = Field(..., description="Service health status ('healthy' or 'degraded')")
     app_name: str = Field(..., description="Registered application name")
     version: str = Field(..., description="Application semantic version")
+    app_version: str = Field(default="0.1.0", description="Application semantic version")
+    model_version: str = Field(default="v1.0.0-rf-calibrated", description="Active model artifact version")
+    dataset_version: str = Field(default="2024.12-asal-v1", description="Underlying dataset version")
     environment: str = Field(..., description="Active operational environment")
     database_status: str = Field(..., description="Status of database connection")
     timestamp: dt.datetime = Field(..., description="UTC timestamp of the health check")
+
+
+class VersionResponse(BaseModel):
+    """Application version and build metadata."""
+    app_name: str
+    app_version: str
+    model_version: str
+    dataset_version: str
+    release_date: str
+    environment: str
+    repository: str
+
+
+class RiskScoreItem(BaseModel):
+    """Individual county risk assessment score."""
+    county: str
+    date: str
+    horizon_months: int
+    calibrated_probability: float
+    confidence_interval: List[float]
+    risk_band: str
+    action_trigger: str
+    disclaimer: str = "Research prototype — not an official humanitarian early-warning alert."
+
+
+class RiskLatestResponse(BaseModel):
+    """Latest risk summary across monitored counties."""
+    counties_monitored: int
+    latest_period: str
+    model_version: str
+    dataset_version: str
+    scores: List[RiskScoreItem]
+
+
+class ForecastItem(BaseModel):
+    """Multi-horizon forecast for a county."""
+    horizon: str
+    horizon_months: int
+    target_date: str
+    calibrated_probability: float
+    confidence_interval: List[float]
+    risk_band: str
+    action_trigger: str
+
+
+class CountyForecastResponse(BaseModel):
+    """Multi-horizon forecast response for a single county."""
+    county: str
+    observation_date: str
+    model_version: str
+    forecasts: List[ForecastItem]
+    disclaimer: str = "Research prototype — not an official IPC classification."
+
+
+class DataStatusResponse(BaseModel):
+    """Data source freshness and operational status."""
+    overall_status: str
+    climate_latest: str
+    vegetation_latest: str
+    market_latest: str
+    food_security_latest: str
+    snapshot_date: str
+    operational_mode: str

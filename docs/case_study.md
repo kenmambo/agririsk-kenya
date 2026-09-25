@@ -3,6 +3,9 @@
 **Author:** Kenneth Mambo  
 **Domain:** Applied Machine Learning, Computational Humanitarian Action, Agricultural Economics  
 **Project:** AgriRisk Kenya  
+**Live Demo:** [agririsk-kenya.streamlit.app](https://agririsk-kenya.streamlit.app)  
+**Repository:** [github.com/kenmambo/agririsk-kenya](https://github.com/kenmambo/agririsk-kenya)  
+**Technical Report:** [reports/technical_report.md](../reports/technical_report.md)  
 **Target:** 800–1,200 Words Case Study  
 
 ---

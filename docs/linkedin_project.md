@@ -17,6 +17,7 @@ By uniting CHIRPS satellite rainfall, MODIS vegetation indices, WFP staple grain
 
 Evaluated on held-out 2024 data, our calibrated Random Forest model delivered **83.3% Recall** in crisis detection—outperforming operational persistence baselines by 42.9% while cutting probability prediction error by 70%.
 
+Explore the live demo: https://agririsk-kenya.streamlit.app
 Explore the repo: https://github.com/kenmambo/agririsk-kenya
 
 ---

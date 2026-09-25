@@ -2,6 +2,7 @@
 
 **Project:** AgriRisk Kenya — Climate-Resilient Agriculture & Food Security Decision Support  
 **Technologies:** Python, Scikit-Learn, Pandas, GeoPandas, Streamlit, FastAPI, Docker, Pydantic, Pytest, Git  
+**Live Demo:** [agririsk-kenya.streamlit.app](https://agririsk-kenya.streamlit.app)  
 **Repository:** [github.com/kenmambo/agririsk-kenya](https://github.com/kenmambo/agririsk-kenya)  
 
 ---

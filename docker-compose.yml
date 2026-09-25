@@ -10,12 +10,20 @@ services:
       - "8501:8501"
     volumes:
       - ./data:/app/data
-      - ./models:/app/models
+      - ./artifacts/models:/app/artifacts/models
       - ./reports:/app/reports
     environment:
       - PYTHONUNBUFFERED=1
+      - APP_ENV=production
+      - AGRIRISK_MODE=demo
+      - DASHBOARD_PORT=8501
     command: ["uv", "run", "streamlit", "run", "app/Home.py", "--server.port=8501", "--server.address=0.0.0.0"]
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8501/_stcore/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
   api:
     build:
@@ -26,11 +34,21 @@ services:
       - "8000:8000"
     volumes:
       - ./data:/app/data
-      - ./models:/app/models
+      - ./artifacts/models:/app/artifacts/models
+      - ./reports:/app/reports
     environment:
       - PYTHONUNBUFFERED=1
-    command: ["uv", "run", "uvicorn", "agririsk.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+      - APP_ENV=production
+      - AGRIRISK_MODE=demo
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    command: ["uv", "run", "uvicorn", "agririsk.api.app:app", "--host", "0.0.0.0", "--port", "8000"]
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
   pipeline:
     build:
@@ -39,10 +57,12 @@ services:
     container_name: agririsk-pipeline
     volumes:
       - ./data:/app/data
-      - ./models:/app/models
+      - ./artifacts/models:/app/artifacts/models
       - ./reports:/app/reports
     environment:
       - PYTHONUNBUFFERED=1
+      - APP_ENV=production
+      - AGRIRISK_MODE=demo
     command: ["uv", "run", "python", "-m", "agririsk.pipeline", "run"]
     profiles:
       - tools

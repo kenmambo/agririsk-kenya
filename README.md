@@ -6,8 +6,11 @@
 [![Package Manager](https://img.shields.io/badge/uv-managed-purple.svg)](https://github.com/astral-sh/uv)
 [![Framework](https://img.shields.io/badge/dashboard-Streamlit-FF4B4B.svg)](https://streamlit.io/)
 [![API](https://img.shields.io/badge/API-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
-[![Tests](https://img.shields.io/badge/tests-90%20passing-brightgreen.svg)](tests/)
+[![CI](https://github.com/kenmambo/agririsk-kenya/actions/workflows/ci.yml/badge.svg)](https://github.com/kenmambo/agririsk-kenya/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20Cloud-brightgreen.svg)](https://agririsk-kenya.streamlit.app)
+
+**Quick Links:** [🚀 Live Demo](https://agririsk-kenya.streamlit.app) • [📖 Technical Report](reports/technical_report.md) • [📋 Model Card](docs/model_card.md) • [🐳 Deployment Guide](docs/deployment.md) • [⚡ Terminal Demo (`make demo`)](#10-quickstart--reproduction-guide)
 
 > [!CAUTION]
 > **RESEARCH & DECISION-SUPPORT PROTOTYPE ONLY**  

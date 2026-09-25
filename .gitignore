@@ -36,6 +36,8 @@ data/*.db
 # Artifacts
 artifacts/models/*
 !artifacts/models/.gitkeep
+!artifacts/models/model_v1
+!artifacts/models/model_v1/**
 
 # Environment variables
 .env

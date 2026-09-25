@@ -2,9 +2,11 @@
 
 **Schema Version:** 1.0  
 **Project Name:** AgriRisk Kenya  
+**Live Demo:** [agririsk-kenya.streamlit.app](https://agririsk-kenya.streamlit.app)  
 **Repository:** [github.com/kenmambo/agririsk-kenya](https://github.com/kenmambo/agririsk-kenya)  
+**Technical Report:** [reports/technical_report.md](../reports/technical_report.md)  
 **Primary Author:** Kenneth Mambo  
-**Status:** Completed Research Prototype (Milestone 7 Packaging)  
+**Status:** Completed Research Prototype (Milestone 8 Deployment Ready)  
 
 ---
 
